@@ -1,13 +1,6 @@
 from unittest import TestCase
 from chronos.services.Event import Event
-
-# Simple listener class for testing
-class Listener:
-    def foo(self, data):
-        print("hello")
-
-    def foo2(self, data):
-        print("hello2")
+from test.test_utils.Listener import Listener
 
 class TestEvent(TestCase):
     def test_subscribe(self):
@@ -76,22 +69,14 @@ class TestEvent(TestCase):
         e = Event()
         self.assertTrue(e.empty())
 
-        # A local class for testing
-        class LocalListener:
-            def __init__(self):
-                self.s = ""
-
-            def increase(self, **kwargs):
-                self.s = kwargs["msg"]
-
         # Instantiate test objects
-        L1 = LocalListener()
-        L2 = LocalListener()
+        L1 = Listener()
+        L2 = Listener()
 
         # Subscribe 2 functions
-        success = e.subscribe(L1.increase)
+        success = e.subscribe(L1.set_message)
         self.assertTrue(success)
-        success = e.subscribe(L2.increase)
+        success = e.subscribe(L2.set_message)
         self.assertTrue(success)
 
         # Fire event on 2 listeners
@@ -101,7 +86,7 @@ class TestEvent(TestCase):
         self.assertEqual(L2.s, msg1)
 
         # Unsub 1 listener
-        e.unsubscribe(L2.increase)
+        e.unsubscribe(L2.set_message)
 
         # Fire event on the remaining listener
         msg2 = "WOW"
