@@ -1,12 +1,7 @@
-import kivy
-kivy.require('1.0.0')
+from chronos.ChronosApp import ChronosApp
+from chronos.services.ServiceManager import ServiceManager
 
-from kivy.app import App
-from kivy.uix.button import Button
-
-class MyApp(App):
-    def build(self):
-        return Button(text='Hello World')
-
-if __name__ in ('__android__', '__main__'):
-    MyApp().run()
+if __name__ == '__main__':
+    chronos = ChronosApp()
+    chronos.run()
+    ServiceManager.dispose()

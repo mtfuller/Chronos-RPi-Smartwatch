@@ -4,6 +4,9 @@ class Service(object):
     def __init__(self):
         self.events = {}
 
+    def dispose(self):
+        self.events = {}
+
     def add_event(self, name):
         '''
         Adds a new event to the collection of events. Returns true if an event has been added successfully. Otherwise,
