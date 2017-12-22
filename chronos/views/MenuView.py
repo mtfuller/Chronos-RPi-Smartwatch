@@ -113,7 +113,7 @@ class MenuView(GestureBox):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.menu_controller = MenuController()
-        self.menu_controller.bind_gesture('left_to_right', self.next)
+        self.menu_controller.bind_gesture('right_to_left', self.next)
         self.screen_manager = ScreenManager()
         self.welcome_screen = WelcomeScreen(name='menu')
         self.settings_screen = AppScreen(name='apps')
