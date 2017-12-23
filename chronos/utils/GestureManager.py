@@ -12,10 +12,6 @@ class GestureRecorderLayout(BoxLayout):
         self.manager = GestureManager()
         super().__init__(**kwargs)
 
-#To recognize a gesture, you’ll need to start recording each individual event in the
-#touch_down handler, add the data points for each call to touch_move , and then do the
-#gesture calculations when all data points have been received in the touch_up handler.
-
     def on_touch_down(self, touch):
         #create an user defined variable and add the touch coordinates
         touch.ud['gesture_path'] = [(touch.x, touch.y)]
