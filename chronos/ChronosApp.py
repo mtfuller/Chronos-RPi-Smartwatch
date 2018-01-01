@@ -1,15 +1,20 @@
+import kivy
+kivy.require('1.9.0')
+
+WIDTH = '320'
+HEIGHT = '240'
+
 from kivy.app import App
-from kivy.core.window import Window
+from kivy.config import Config
+Config.set('graphics','width', WIDTH)
+Config.set('graphics', 'height', HEIGHT)
+Config.set('graphics', 'fullscreen', 1)
+
 from chronos.views.ChronosView import ChronosView
-#Window.fullscreen = True
 
 class ChronosApp(App):
-    WIDTH = 320
-    HEIGHT = 240
-
     def __init__(self, **kwargs):
         App.__init__(self)
-        Window.size = (ChronosApp.WIDTH, ChronosApp.HEIGHT)
         self.stage = ChronosView()
 
     def build(self):
