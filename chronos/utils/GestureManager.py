@@ -9,28 +9,29 @@ from kivy.gesture import Gesture
 class GestureRecorderLayout(BoxLayout):
 
     def __init__(self, **kwargs):
+        super(GestureRecorderLayout, self).__init__(**kwargs)
         self.manager = GestureManager()
-        super().__init__(**kwargs)
+
 
     def on_touch_down(self, touch):
         #create an user defined variable and add the touch coordinates
         touch.ud['gesture_path'] = [(touch.x, touch.y)]
-        super().on_touch_down(touch)
+        super(GestureRecorderLayout, self).on_touch_down(touch)
 
     def on_touch_move(self, touch):
         touch.ud['gesture_path'].append((touch.x, touch.y))
-        super().on_touch_move(touch)
+        super(GestureRecorderLayout, self).on_touch_move(touch)
 
     def on_touch_up(self, touch):
         if 'gesture_path' in touch.ud:
-            name = input("What would you like to name the gesture?\nName: ")
+            name = raw_input("What would you like to name the gesture?\nName: ")
             self.manager.add_gesture(name, touch.ud['gesture_path'])
             self.manager.save()
-        super().on_touch_up(touch)
+            super(GestureRecorderLayout, self).on_touch_up(touch)
 
 class GestureRecorder(App):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(GestureRecorder, self).__init__(**kwargs)
 
     def build(self):
         return GestureRecorderLayout()

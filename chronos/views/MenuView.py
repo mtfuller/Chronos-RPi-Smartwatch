@@ -30,13 +30,13 @@ Builder.load_string("""
         Label:
             id: clock
             text: '00:00'
-            font_size: '72'
+            font_size: 72
             halign: 'right'
             text_size: (295,75)
         Label:
             id: date
             text: 'January 1, 2018'
-            font_size: '16'
+            font_size: 16
             text_size: (295,95)
             halign: 'right'
             
@@ -74,11 +74,11 @@ class GestureBox(BoxLayout):
     def on_touch_down(self, touch):
         #create an user defined variable and add the touch coordinates
         touch.ud['gesture_path'] = [(touch.x, touch.y)]
-        super().on_touch_down(touch)
+        super(GestureBox, self).on_touch_down(touch)
 
     def on_touch_move(self, touch):
         touch.ud['gesture_path'].append((touch.x, touch.y))
-        super().on_touch_move(touch)
+        super(GestureBox, self).on_touch_move(touch)
 
     def on_touch_up(self, touch):
         if 'gesture_path' in touch.ud:
@@ -95,7 +95,7 @@ class GestureBox(BoxLayout):
 # Declare both screens
 class WelcomeScreen(Screen):
     def __init__(self, **kw):
-        super().__init__(**kw)
+        super(WelcomeScreen, self).__init__(**kw)
         self.clock = self.ids.clock
         self.date = self.ids.date
         self.clock_controller = ClockController(self.set_clock)
@@ -111,7 +111,7 @@ class AppScreen(Screen):
 
 class MenuView(GestureBox):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(MenuView, self).__init__(**kwargs)
         self.menu_controller = MenuController()
         self.menu_controller.bind_gesture('right_to_left', self.next)
         self.screen_manager = ScreenManager()

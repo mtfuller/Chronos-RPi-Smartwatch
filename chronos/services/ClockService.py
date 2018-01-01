@@ -6,7 +6,7 @@ from chronos.services.Service import Service
 
 class ClockService(Service):
     def __init__(self):
-        super().__init__()
+        super(ClockService, self).__init__()
         self.running = True
         self.add_event('clock')
         self.clock_event = self.get_event('clock')
@@ -14,7 +14,7 @@ class ClockService(Service):
         self.clock.start()
 
     def dispose(self):
-        super().dispose()
+        super(ClockService, self).dispose()
         self.running = False
         self.clock.join()
 

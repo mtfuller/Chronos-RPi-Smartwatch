@@ -4,9 +4,8 @@ from kivy.uix.button import Button
 from chronos.controllers.MenuController import MenuController
 from chronos.views.MenuView import MenuView
 
-class ChronosView():
+class ChronosView(object):
     def __init__(self, **kwargs):
-        super().__init__()
         self.menu = MenuView()
 
     def build(self):
